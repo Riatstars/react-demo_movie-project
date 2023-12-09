@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { Box, Container } from "@mui/material";
+import "./App.css";
+import ResponsiveAppBar from "./components/AppBar";
+import SideBar from "./components/SideBar";
+import React, { useState } from "react";
+import MoviesList from "./components/MoviesList";
 
 function App() {
+  const [query, setQuery] = useState({
+    sortBy: "",
+    genresFilter: [],
+    language: "",
+  });
+  console.log(query);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ResponsiveAppBar />
+      <Container maxWidth="lg">
+        <h2> Now Playing Movies</h2>
+        <Box style={{ display: "flex" }}>
+          <Box>
+            <SideBar setQuery={setQuery} />
+          </Box>
+          <MoviesList query={query} />
+        </Box>
+      </Container>
+    </>
   );
 }
 
