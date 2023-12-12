@@ -7,7 +7,7 @@ import Select from "@mui/material/Select";
 import { Typography } from "@mui/material";
 
 export default function SelectBox({ title, options, setQuery }) {
-  const [value, setValue] = React.useState(options[0].value);
+  const [value, setValue] = React.useState(options[0].id);
 
   const handleChange = (e) => {
     console.log(e.target.value);

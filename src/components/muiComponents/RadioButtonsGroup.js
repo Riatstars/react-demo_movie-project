@@ -9,7 +9,7 @@ export default function RadioButtonsGroup({ name, options }) {
   return (
     <FormControl>
       <FormLabel
-        lineHeight={3}
+        lineheight={3}
         style={{ fontSize: 14 }}
         id="demo-radio-buttons-group-label"
       >

@@ -7,7 +7,7 @@ import { Box, CardActionArea } from "@mui/material";
 
 export default function MovieCard({ moviePath, movieTitle, movieReleaseDate }) {
   return (
-    <Card style={{ maxWidth: "182px", maxHeight: "353px", marginTop: "30px" }}>
+    <Card style={{ maxWidth: "182px", maxHeight: "400px", marginTop: "30px" }}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -22,8 +22,7 @@ export default function MovieCard({ moviePath, movieTitle, movieReleaseDate }) {
           style={{
             padding: "10px",
             //Height width, not working
-            height: "273",
-            width: "180",
+            height: "100px",
           }}
         >
           <Box>

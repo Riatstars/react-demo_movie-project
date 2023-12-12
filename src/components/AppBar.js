@@ -11,6 +11,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link } from "react-router-dom";
 
 const pages = ["Movies", "TV Shows", "More"];
 const settings = ["My Watchlist", "Account", "Logout"];
@@ -18,6 +19,7 @@ const settings = ["My Watchlist", "Account", "Logout"];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [searchActive, setSearchAticve] = React.useState(true);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -34,10 +36,10 @@ function ResponsiveAppBar() {
   return (
     <AppBar
       style={{ backgroundColor: "rgb(3,37,65)" }}
-      maxWidth="xl"
+      maxwidth="xl"
       position="static"
     >
-      <Container maxWidth="xl">
+      <Container maxwidth="xl">
         <Toolbar style={{ height: "64px" }} disableGutters>
           <img
             style={{ paddingRight: "1rem" }}
@@ -122,14 +124,19 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
-            <Tooltip title="Open Notification">
-              <img
-                style={{ paddingLeft: "20px", filter: "invert(1)" }}
-                src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-3992eb97b2b749f09793f9653407c499aa896d99535cb35cc66682d26a49df13.svg"
-                alt="The Movie Database (TMDB)"
-                width="40"
-                height="30"
-              />
+            <Tooltip title="Search">
+              <Link
+                to={searchActive ? "/search" : "/"}
+                onClick={() => setSearchAticve((prevState) => !prevState)}
+              >
+                <img
+                  style={{ paddingLeft: "20px", filter: "invert(1)" }}
+                  src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-3992eb97b2b749f09793f9653407c499aa896d99535cb35cc66682d26a49df13.svg"
+                  alt="The Movie Database (TMDB)"
+                  width="40"
+                  height="30"
+                />
+              </Link>
             </Tooltip>
           </Box>
         </Toolbar>

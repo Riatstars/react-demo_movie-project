@@ -34,7 +34,6 @@ const filterSeenOptions = [
 function SideBar({ setQuery }) {
   const [genres, setGenres] = React.useState([]);
   const [languages, setLanguages] = React.useState([]);
-
   React.useEffect(() => {
     const options = {
       method: "GET",
@@ -115,7 +114,11 @@ function SideBar({ setQuery }) {
 
       <Paper style={{ marginTop: "1rem" }} elevation={6}>
         <Box>
-          <Accordion style={{ width: "260px" }} disableGutters={true}>
+          <Accordion
+            style={{ width: "260px" }}
+            disableGutters={true}
+            defaultExpanded={true}
+          >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
