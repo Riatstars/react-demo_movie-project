@@ -1,6 +1,7 @@
 import { Button, Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
+import { Link } from "react-router-dom";
 
 let pagination = 1;
 function MoviesList({ query, setQuery }) {
@@ -13,7 +14,6 @@ function MoviesList({ query, setQuery }) {
       ...prevState,
       pagination: pagination,
     }));
-    console.log(pagination);
   };
 
   const fetchMoviesByFilter = async () => {
@@ -104,11 +104,13 @@ function MoviesList({ query, setQuery }) {
         >
           {movies.map((movie) => (
             <Grid style={{ paddingTop: "0" }} key={movie.title} item md={2}>
-              <MovieCard
-                moviePath={movie.poster_path}
-                movieTitle={movie.title}
-                movieReleaseDate={movie.release_date}
-              />
+              <Link to={`/movie/${movie.id}`}>
+                <MovieCard
+                  moviePath={movie.poster_path}
+                  movieTitle={movie.title}
+                  movieReleaseDate={movie.release_date}
+                />
+              </Link>
             </Grid>
           ))}
           <Grid item md={10}>

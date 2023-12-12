@@ -14,14 +14,13 @@ function App() {
     pagination: 1,
     search: "",
   });
-  console.log(query);
 
   return (
     <>
       <ResponsiveAppBar />
       <Outlet context={setQuery} />
 
-      <Container maxWidth="lg">
+      <Container maxwidth="lg">
         <h2> Now Playing Movies</h2>
         <Box style={{ display: "flex" }}>
           <Box>
