@@ -62,12 +62,12 @@ function SideBar({ setQuery }) {
         setGenres((genres) => [...genres]);
       }
     });
-    const selectedGenres = genres
+    const selectedGenresId = genres
       .filter((genre) => {
         return genre.selected === true;
       })
       .map((genre) => genre.id);
-    setQuery((prevState) => ({ ...prevState, genresFilter: selectedGenres }));
+    setQuery((prevState) => ({ ...prevState, genresFilter: selectedGenresId }));
   };
 
   React.useEffect(() => {

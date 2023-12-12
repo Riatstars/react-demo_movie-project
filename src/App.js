@@ -25,7 +25,7 @@ function App() {
         <h2> Now Playing Movies</h2>
         <Box style={{ display: "flex" }}>
           <Box>
-            <SideBar setQuery={{ setQuery }} />
+            <SideBar setQuery={setQuery} />
           </Box>
           <MoviesList query={query} setQuery={setQuery} />
         </Box>
