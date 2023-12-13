@@ -2,8 +2,13 @@ body,
 html {
   margin: 0;
   padding: 0;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Source Sans Pro",
+    "Arial, " sans-serif;
 }
 
 span.MuiTypography-root.MuiTypography-body1.MuiFormControlLabel-label.css-ahj2mt-MuiTypography-root {
   font-size: 14px;
+}
+html {
 }

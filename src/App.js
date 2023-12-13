@@ -4,31 +4,20 @@ import ResponsiveAppBar from "./components/AppBar";
 import SideBar from "./components/SideBar";
 import React, { useState } from "react";
 import MoviesList from "./components/MoviesList";
-import { Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
+import SearchPage from "./pages/MainSection";
 
 function App() {
-  const [query, setQuery] = useState({
-    sortBy: "",
-    genresFilter: [],
-    language: "",
-    pagination: 1,
-    search: "",
-  });
+  let navigate = useNavigate();
+
+  React.useEffect(() => {
+    navigate("/movie");
+  }, []);
 
   return (
     <>
       <ResponsiveAppBar />
-      <Outlet context={setQuery} />
-
-      <Container maxwidth="lg">
-        <h2> Now Playing Movies</h2>
-        <Box style={{ display: "flex" }}>
-          <Box>
-            <SideBar setQuery={setQuery} />
-          </Box>
-          <MoviesList query={query} setQuery={setQuery} />
-        </Box>
-      </Container>
+      <Outlet />
     </>
   );
 }

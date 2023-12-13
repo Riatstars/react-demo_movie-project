@@ -9,13 +9,18 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { useOutletContext } from "react-router-dom";
 
-function SearchPage() {
-  const setQuery = useOutletContext();
+function SearchPage({ setQuery, showSearchBar }) {
   const [inputValue, setInputValue] = React.useState("");
 
   return (
     <>
-      <Container maxWidth="lg" style={{ marginTop: "1rem" }}>
+      <Container
+        maxWidth="lg"
+        style={{
+          display: showSearchBar ? "block" : "none",
+          marginTop: "1rem",
+        }}
+      >
         <FormControl fullWidth={true} variant="standard">
           <InputLabel htmlFor="standard-adornment-password">
             Type to search

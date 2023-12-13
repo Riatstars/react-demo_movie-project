@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { BrowserRouter, Routes, Route, Path } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Path, Navigate } from "react-router-dom";
 import SearchPage from "./pages/SearchPage";
 import MovieDetailPage from "./pages/MovieDetailPage";
+import ResponsiveAppBar from "./components/AppBar";
+
+import MainSection from "./pages/MainSection";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,10 +14,8 @@ root.render(
     <React.StrictMode>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="search" element={<SearchPage />} />
-        </Route>
-        <Route path="movie" elements={<></>}>
-          <Route path=":movieId" element={<MovieDetailPage />} />
+          <Route index path="movie" element={<MainSection />} />
+          <Route path="movie/:movieId" element={<MovieDetailPage />} />
 
           <Route
             parh="*"
