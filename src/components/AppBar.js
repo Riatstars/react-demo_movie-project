@@ -19,7 +19,6 @@ const settings = ["My Watchlist", "Account", "Logout"];
 function ResponsiveAppBar({ setShowSearchBar }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [searchActive, setSearchAticve] = React.useState(true);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -127,14 +126,16 @@ function ResponsiveAppBar({ setShowSearchBar }) {
               ))}
             </Menu>
             <Tooltip title="Search">
-              <img
-                onClick={() => setShowSearchBar((prevState) => !prevState)}
-                style={{ paddingLeft: "20px", filter: "invert(1)" }}
-                src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-3992eb97b2b749f09793f9653407c499aa896d99535cb35cc66682d26a49df13.svg"
-                alt="The Movie Database (TMDB)"
-                width="40"
-                height="30"
-              />
+              <Link to="/movie/search">
+                <img
+                  onClick={() => setShowSearchBar((prevState) => !prevState)}
+                  style={{ paddingLeft: "20px", filter: "invert(1)" }}
+                  src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-3992eb97b2b749f09793f9653407c499aa896d99535cb35cc66682d26a49df13.svg"
+                  alt="The Movie Database (TMDB)"
+                  width="40"
+                  height="30"
+                />
+              </Link>
             </Tooltip>
           </Box>
         </Toolbar>

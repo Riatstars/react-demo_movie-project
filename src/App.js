@@ -1,15 +1,19 @@
-import { Box, Container, TextField } from "@mui/material";
 import "./App.css";
 import ResponsiveAppBar from "./components/AppBar";
-import SideBar from "./components/SideBar";
-import React, { useState } from "react";
-import MoviesList from "./components/MoviesList";
-import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
-import SearchPage from "./pages/MainSection";
+import React from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function App() {
-  let navigate = useNavigate();
+  const [query, setQuery] = React.useState({
+    sortBy: "",
+    genresFilter: [],
+    language: "",
+    pagination: 1,
+    search: "",
+  });
   const [showSearchBar, setShowSearchBar] = React.useState(false);
+
+  let navigate = useNavigate();
   React.useEffect(() => {
     navigate("/movie");
   }, []);
@@ -17,7 +21,7 @@ function App() {
   return (
     <>
       <ResponsiveAppBar setShowSearchBar={setShowSearchBar} />
-      <Outlet context={showSearchBar} />
+      <Outlet context={{ showSearchBar, query, setQuery }} />
     </>
   );
 }

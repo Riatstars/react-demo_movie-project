@@ -1,53 +1,22 @@
-import {
-  Container,
-  FormControl,
-  Input,
-  InputAdornment,
-  InputLabel,
-} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import React from "react";
-import SearchIcon from "@mui/icons-material/Search";
+import SearchBarPage from "./SearchBarPage";
 import { useOutletContext } from "react-router-dom";
+import SearchResultList from "../components/SearchResultList";
 
-function SearchPage({ setQuery, showSearchBar }) {
-  const [inputValue, setInputValue] = React.useState("");
+const SearchPage = () => {
+  const { showSearchBar, setQuery, query } = useOutletContext();
 
   return (
     <>
-      <Container
-        maxWidth="lg"
-        style={{
-          display: showSearchBar ? "block" : "none",
-          marginTop: "1rem",
-        }}
-      >
-        <FormControl fullWidth={true} variant="standard">
-          <InputLabel htmlFor="standard-adornment-password">
-            Type to search
-          </InputLabel>
-          <Input
-            id="standard-adornment-password"
-            type={"text"}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-            }}
-            endAdornment={
-              <InputAdornment position="end">
-                <SearchIcon
-                  onClick={() => {
-                    setQuery((prevState) => ({
-                      ...prevState,
-                      search: inputValue,
-                    }));
-                  }}
-                />
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+      <SearchBarPage showSearchBar={showSearchBar} setQuery={setQuery} />
+      <Container maxwidth="lg">
+        <h2> Now Playing Movies</h2>
+        <Box style={{ display: "flex" }}>
+          <SearchResultList query={query} setQuery={setQuery} />
+        </Box>
       </Container>
     </>
   );
-}
-
+};
 export default SearchPage;

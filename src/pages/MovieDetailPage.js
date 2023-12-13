@@ -1,8 +1,7 @@
-import { Box, Container, Grid, Paper } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import CustomBackground from "../components/muiComponents/CustomBackground";
-import { LineWeight } from "@mui/icons-material";
 import CircleIcon from "@mui/icons-material/Circle";
 
 function MovieDetailPage() {
