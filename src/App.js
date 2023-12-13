@@ -9,15 +9,15 @@ import SearchPage from "./pages/MainSection";
 
 function App() {
   let navigate = useNavigate();
-
+  const [showSearchBar, setShowSearchBar] = React.useState(false);
   React.useEffect(() => {
     navigate("/movie");
   }, []);
 
   return (
     <>
-      <ResponsiveAppBar />
-      <Outlet />
+      <ResponsiveAppBar setShowSearchBar={setShowSearchBar} />
+      <Outlet context={showSearchBar} />
     </>
   );
 }

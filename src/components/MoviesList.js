@@ -2,6 +2,7 @@ import { Button, Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import MovieCard from "./MovieCard";
 import { Link } from "react-router-dom";
+import { set } from "react-hook-form";
 
 let pagination = 1;
 function MoviesList({ query, setQuery }) {
@@ -73,6 +74,9 @@ function MoviesList({ query, setQuery }) {
       if (query.language) {
         url += "&with_original_language=" + query.language;
       }
+      if (query.search) {
+        url = `https://api.themoviedb.org/3/search/movie?query=${query.search}&include_adult=false&language=en-US&page=${query.pagination}`;
+      }
       try {
         const response = await fetch(url, options);
 
@@ -85,14 +89,47 @@ function MoviesList({ query, setQuery }) {
       }
     }
   };
+  const fetchMoviesBySearch = async () => {
+    await setQuery((prevState) => ({
+      ...prevState,
+      sortBy: "",
+      genresFilter: [],
+      language: "",
+      pagination: 1,
+    }));
 
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYzkxNzFiMjhmYWNmMGE3ZDM4YTg0NDNiM2YyYjg0MyIsInN1YiI6IjY1NjZiMDVmM2Q3NDU0MDBhYzFmZWZhMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zhl8NF8YPOPv43Qlk1mR64xoFaRYvhRdpuBI4nxWM0Y",
+      },
+    };
+
+    fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${query.search}&include_adult=false&language=en-US&page=${query.pagination}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response.results);
+        setMovies(response.results);
+      })
+
+      .catch((err) => console.error(err));
+  };
   useEffect(() => {
-    fetchMoviesByFilter();
+    if (query.search === "") {
+      fetchMoviesByFilter();
+    }
   }, [query.sortBy, query.genresFilter, query.language]);
   useEffect(() => {
     fetchMoviesByPagination();
   }, [pagination]);
-
+  useEffect(() => {
+    fetchMoviesBySearch();
+  }, [query.search]);
   return (
     <>
       <Container style={{ paddingLeft: "30px" }}>
@@ -102,8 +139,8 @@ function MoviesList({ query, setQuery }) {
           columns={10}
           spacing={2}
         >
-          {movies.map((movie) => (
-            <Grid style={{ paddingTop: "0" }} key={movie.title} item md={2}>
+          {movies?.map((movie) => (
+            <Grid style={{ paddingTop: "0" }} key={movie.id} item md={2}>
               <Link to={`/movie/${movie.id}`}>
                 <MovieCard
                   moviePath={movie.poster_path}

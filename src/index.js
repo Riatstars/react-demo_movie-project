@@ -15,6 +15,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index path="movie" element={<MainSection />} />
+
           <Route path="movie/:movieId" element={<MovieDetailPage />} />
 
           <Route

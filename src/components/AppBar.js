@@ -41,13 +41,15 @@ function ResponsiveAppBar({ setShowSearchBar }) {
     >
       <Container maxwidth="xl">
         <Toolbar style={{ height: "64px" }} disableGutters>
-          <img
-            style={{ paddingRight: "1rem" }}
-            src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
-            alt="The Movie Database (TMDB)"
-            width="154"
-            height="20"
-          />
+          <Link to="/movie">
+            <img
+              style={{ paddingRight: "1rem" }}
+              src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
+              alt="The Movie Database (TMDB)"
+              width="154"
+              height="20"
+            />
+          </Link>
 
           <Box
             style={{ height: "64px" }}
